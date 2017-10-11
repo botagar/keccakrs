@@ -5,7 +5,7 @@ authors = ["John Geddes"]
 
 [[bin]]
 name = "keccakrs"
-path = "main.rs"
+path = "src/keccak.rs"
 
 [profile.dev]
 opt-level = 3  # Controls the --opt-level the compiler builds with
