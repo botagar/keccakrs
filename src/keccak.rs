@@ -22,6 +22,8 @@ pub struct Keccak {
 
 impl Keccak {
 
+  pub fn new_keccak1600_256() -> Keccak { Keccak::new(1088, 512) }
+
   pub fn new(rate: usize, capacity: usize) -> Keccak {
     Keccak {
       state: Keccak::init_state(),
