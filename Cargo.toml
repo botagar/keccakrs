@@ -8,6 +8,7 @@ authors = ["John Geddes <botagar@gmail.com>"]
 keywords = ["keccak", "crypto", "hash"]
 categories = ["cryptography"]
 license = "MPL-2.0"
+readme = "README.md"
 
 [lib]
 path = "src/keccak.rs"
