@@ -1,6 +1,12 @@
 #![crate_type = "lib"]
 #![crate_name = "keccakrs"]
 
+mod constants;
+mod round;
+mod keccak_f;
+mod sponge;
+mod padder;
+
 use constants::*;
 use round::*;
 use keccak_f::*;
