@@ -9,8 +9,15 @@ keywords = ["keccak", "crypto", "hash"]
 categories = ["cryptography"]
 license = "MPL-2.0"
 
+[lib]
+path = "src/keccak.rs"
+
 [profile.dev]
-opt-level = 3  # Controls the --opt-level the compiler builds with
-debug = false   # Controls whether the compiler passes `-g`
+opt-level = 0
+debug = true
+
+[profile.release]
+opt-level = 3
+debug = false
 
 # More fields: http://doc.crates.io/manifest.html#package-metadata
