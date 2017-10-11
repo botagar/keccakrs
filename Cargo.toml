@@ -1,8 +1,16 @@
 [package]
+description = "A verbose, readable implementation of Keccak in Rust"
+homepage = "https://github.com/botagar/keccakrs"
+repository = "https://github.com/botagar/keccakrs"
 name = "keccakrs"
 version = "0.1.0"
-authors = ["John Geddes"]
+authors = ["John Geddes <botagar@gmail.com>"]
+keywords = ["keccak", "crypto", "hash"]
+categories = ["cryptography"]
+license = "MPL-2.0"
 
 [profile.dev]
 opt-level = 3  # Controls the --opt-level the compiler builds with
 debug = false   # Controls whether the compiler passes `-g`
+
+# More fields: http://doc.crates.io/manifest.html#package-metadata
