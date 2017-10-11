@@ -3,10 +3,6 @@ name = "keccakrs"
 version = "0.1.0"
 authors = ["John Geddes"]
 
-[[bin]]
-name = "keccakrs"
-path = "src/keccak.rs"
-
 [profile.dev]
 opt-level = 3  # Controls the --opt-level the compiler builds with
 debug = false   # Controls whether the compiler passes `-g`
