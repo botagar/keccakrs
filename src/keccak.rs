@@ -38,7 +38,9 @@ impl Keccak {
 
   pub fn injest(&mut self, input: &mut String) {
     let mut input_as_bytes: Vec<u8> = input.clone().into_bytes();
+    println!("Input: {:?}", input_as_bytes);
     self.input_padder.pad(&mut input_as_bytes);
+    println!("Padded: {:?}", input_as_bytes);
     self.data_queue = input_as_bytes;
   }
 
