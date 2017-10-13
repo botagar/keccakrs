@@ -17,14 +17,12 @@ const EXPECTED_RESULTS_SHORT_INPUT: [&'static str; 4] = [
     "18587dc2ea106b9a1563e32b3312421ca164c7f1f07bc922a9c83d77cea3a1e5d0c69910739025372dc14ac9642629379540c17e2a65b19d77aa511a9d00bb96"
 ];
 
-const LONG_INPUT: &str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non faucibus arcu, ut congue velit.  \
- Mauris suscipit posuere rutrum. Donec vel volutpat mi. Donec vulputate velit eu erat semper, eget feugiat leo tempus. \
-   Donec in eros nec mi venenatis scelerisque eget in erat. Curabitur nec pharetra nulla. Aenean fermentum risus id ipsum gravida mattis.";
+const LONG_INPUT: &str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 const EXPECTED_RESULTS_LONG_INPUT: [&'static str; 4] = [
-    "af43ba64d02c30606c4159824c0c963c59062a66df21cd80c49800a7",
-    "9317b02a982da9ce0736d51914b0948613738b1c26ae3f5d3eb6e9d729c1ae85",
-    "c9846d5a5c4f27100671b76b32f15ca1b11b8e2a4707b9e04d230dab879cb62c097fc780fe44b7cf6c07691913eedaf2",
-    "25cdf5af94b2e97b8ca9d4282b025598852497336e27d0861a1c7a572c78996881bd6f0ee85a321a1ab96ab4e4821ac36c1179286d89cdb04575152133024957"
+    "33ce2fc65ac662fae17643d08e48572c72b79922aaea5d36d3943c8c",
+    "ab93a89616d979f58adda52aa0c56f39ede988128ef47ab8a4d2c3c4d45c5049",
+    "117835763a486a1ae0bd23c8ae131696c814043d9e4af224034daaeebcf00b54a11e65609971b2cbd0560e9ddc0f899e",
+    "37bde721ca7cc79432c1c3f51a384ce43557c31a06bb9fd18fcd8bff8ab47c4763478b8a1f69fab6675d8d11bec993afe659ef84d6b79be9f07611513f64e961"
 ];
 
 #[test]
@@ -41,12 +39,12 @@ fn k_224_short_input() {
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[0]));
 }
 
-// #[test]
-// fn k_224_long_input() {
-//     let mut keccak = Keccak::new_keccak1600_224();
-//     keccak.injest(&mut String::from(LONG_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[0]));
-// }
+#[test]
+fn k_224_long_input() {
+    let mut keccak = new_keccak1600_224();
+    keccak.injest(&mut String::from(LONG_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[0]));
+}
 
 #[test]
 fn k_256_empty_input() {
@@ -62,12 +60,12 @@ fn k_256_short_input() {
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[1]));
 }
 
-// #[test]
-// fn k_256_long_input() {
-//     let mut keccak = Keccak::new_keccak1600_256();
-//     keccak.injest(&mut String::from(LONG_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[1]));
-// }
+#[test]
+fn k_256_long_input() {
+    let mut keccak = new_keccak1600_256();
+    keccak.injest(&mut String::from(LONG_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[1]));
+}
 
 #[test]
 fn k_384_empty_input() {
@@ -83,12 +81,12 @@ fn k_384_short_input() {
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[2]));
 }
 
-// #[test]
-// fn k_384_long_input() {
-//     let mut keccak = Keccak::new_keccak1600_384();
-//     keccak.injest(&mut String::from(LONG_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[2]));
-// }
+#[test]
+fn k_384_long_input() {
+    let mut keccak = new_keccak1600_384();
+    keccak.injest(&mut String::from(LONG_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[2]));
+}
 
 #[test]
 fn k_512_empty_input() {
@@ -104,12 +102,12 @@ fn k_512_short_input() {
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[3]));
 }
 
-// #[test]
-// fn k_512_long_input() {
-//     let mut keccak = Keccak::new_keccak1600_512();
-//     keccak.injest(&mut String::from(LONG_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[3]));
-// }
+#[test]
+fn k_512_long_input() {
+    let mut keccak = new_keccak1600_512();
+    keccak.injest(&mut String::from(LONG_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[3]));
+}
 
 fn vec_to_hex_string(bytes: Vec<u8>) -> String {
   let strs: Vec<String> = bytes.iter()

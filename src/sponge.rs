@@ -27,7 +27,7 @@ impl Sponge {
     println!("Lanes: {:?}", lanes);
 
     for block_index in 0..number_of_blocks {
-      let block_offset: usize = block_index * 17;
+      let block_offset: usize = block_index * (self.rate_in_bytes/8);
       for i in 0..(self.rate_in_bytes/8) {
         state[i] ^= lanes[block_offset + i];
       }
