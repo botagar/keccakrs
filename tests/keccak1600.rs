@@ -34,12 +34,12 @@ fn k_224_empty_input() {
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[0]));
 }
 
-// #[test]
-// fn k_224_short_input() {
-//     let mut keccak = Keccak::new_keccak1600_224();
-//     keccak.injest(&mut String::from(SHORT_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[0]));
-// }
+#[test]
+fn k_224_short_input() {
+    let mut keccak = new_keccak1600_224();
+    keccak.injest(&mut String::from(SHORT_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[0]));
+}
 
 // #[test]
 // fn k_224_long_input() {
@@ -69,19 +69,19 @@ fn k_256_short_input() {
 //     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[1]));
 // }
 
-// #[test]
-// fn k_384_empty_input() {
-//     let mut keccak = Keccak::new_keccak1600_384();
-//     keccak.injest(&mut String::from(EMPTY_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[2]));
-// }
+#[test]
+fn k_384_empty_input() {
+    let mut keccak = new_keccak1600_384();
+    keccak.injest(&mut String::from(EMPTY_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[2]));
+}
 
-// #[test]
-// fn k_384_short_input() {
-//     let mut keccak = Keccak::new_keccak1600_384();
-//     keccak.injest(&mut String::from(SHORT_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[2]));
-// }
+#[test]
+fn k_384_short_input() {
+    let mut keccak = new_keccak1600_384();
+    keccak.injest(&mut String::from(SHORT_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[2]));
+}
 
 // #[test]
 // fn k_384_long_input() {
@@ -90,19 +90,19 @@ fn k_256_short_input() {
 //     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_LONG_INPUT[2]));
 // }
 
-// #[test]
-// fn k_512_empty_input() {
-//     let mut keccak = Keccak::new_keccak1600_512();
-//     keccak.injest(&mut String::from(EMPTY_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[3]));
-// }
+#[test]
+fn k_512_empty_input() {
+    let mut keccak = new_keccak1600_512();
+    keccak.injest(&mut String::from(EMPTY_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[3]));
+}
 
-// #[test]
-// fn k_512_short_input() {
-//     let mut keccak = Keccak::new_keccak1600_512();
-//     keccak.injest(&mut String::from(SHORT_INPUT));
-//     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[3]));
-// }
+#[test]
+fn k_512_short_input() {
+    let mut keccak = new_keccak1600_512();
+    keccak.injest(&mut String::from(SHORT_INPUT));
+    assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[3]));
+}
 
 // #[test]
 // fn k_512_long_input() {
