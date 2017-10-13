@@ -1,5 +1,3 @@
-# This code is BROKEN! Please do not use just yet!
-
 Add to Cargo.toml
 
     [dependencies]
@@ -27,7 +25,7 @@ In your code, use as follow:
       let state: Vec<u64> = keccak.get_internal_state();
     }
 
-This package is still under heavy development and is ~~untested~~ broken.
+This package is still under heavy development. Use at own risk.
 
 The primary goal of this code base is to present a easy to read and understand implementation of Keccak.
 
