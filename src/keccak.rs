@@ -13,6 +13,11 @@ use keccak_f::*;
 use sponge::*;
 use padder::*;
 
+pub fn new_keccak1600_224() -> Keccak { Keccak::new(1152, 448) }
+pub fn new_keccak1600_256() -> Keccak { Keccak::new(1088, 512) }
+pub fn new_keccak1600_384() -> Keccak { Keccak::new(832, 768) }
+pub fn new_keccak1600_512() -> Keccak { Keccak::new(576, 1024) }
+
 pub struct Keccak {
   state: Vec<u64>,
   data_queue: Vec<u8>,
@@ -21,11 +26,6 @@ pub struct Keccak {
 }
 
 impl Keccak {
-
-  pub fn new_keccak1600_224() -> Keccak { Keccak::new(1152, 448) }
-  pub fn new_keccak1600_256() -> Keccak { Keccak::new(1088, 512) }
-  pub fn new_keccak1600_384() -> Keccak { Keccak::new(832, 768) }
-  pub fn new_keccak1600_512() -> Keccak { Keccak::new(576, 1024) }
 
   pub fn new(rate: usize, capacity: usize) -> Keccak {
     Keccak {

@@ -29,7 +29,7 @@ const EXPECTED_RESULTS_LONG_INPUT: [&'static str; 4] = [
 
 #[test]
 fn k_224_empty_input() {
-    let mut keccak = Keccak::new_keccak1600_224();
+    let mut keccak = new_keccak1600_224();
     keccak.injest(&mut String::from(EMPTY_INPUT));
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[0]));
 }
@@ -50,14 +50,14 @@ fn k_224_empty_input() {
 
 #[test]
 fn k_256_empty_input() {
-    let mut keccak = Keccak::new_keccak1600_256();
+    let mut keccak = new_keccak1600_256();
     keccak.injest(&mut String::from(EMPTY_INPUT));
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_EMPTY_INPUT[1]));
 }
 
 #[test]
 fn k_256_short_input() {
-    let mut keccak = Keccak::new_keccak1600_256();
+    let mut keccak = new_keccak1600_256();
     keccak.injest(&mut String::from(SHORT_INPUT));
     assert_eq!(vec_to_hex_string(keccak.hash()), String::from(EXPECTED_RESULTS_SHORT_INPUT[1]));
 }
