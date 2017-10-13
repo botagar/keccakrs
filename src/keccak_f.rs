@@ -19,8 +19,6 @@ impl KeccakF {
   }
 
   pub fn process(&self, mut state: &mut Vec<u64>) {
-    // println!("Processing with parameters: b={} c={}, r={}, l={}, w={}, n={}",self.width,self.capacity,self.rate,self.l,self.w,self.n);
-
     for i in 0..self.n {
       round(&mut state, ROUND_CONSTANTS[i]);
     }
