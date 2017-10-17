@@ -1,6 +1,6 @@
 [root]
 name = "keccakrs"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "crunchy 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
 ]

@@ -1,5 +1,3 @@
-
-
 use constants::*;
 
 macro_rules! index {
@@ -25,17 +23,25 @@ fn theta(state: &mut [u64]) {
   let mut c = [0u64; 5];
   let mut d = [0u64; 5];
 
-  for x in 0..5 {
-    c[x] = state[index!(x,0)] ^ state[index!(x,1)] ^ state[index!(x,2)] ^ state[index!(x,3)] ^ state[index!(x,4)];
+  unroll! {
+    for x in 0..5 {
+      c[x] = state[index!(x,0)] ^ state[index!(x,1)] ^ state[index!(x,2)] ^ state[index!(x,3)] ^ state[index!(x,4)];
+    }
   }
 
-  for x in 0..5 {
-    d[x] = c[(x+4)%5] ^ c[(x+1)%5].rotate_left(1);
+  unroll! {
+    for x in 0..5 {
+      d[x] = c[(x+4)%5] ^ c[(x+1)%5].rotate_left(1);
+    }
   }
 
-  for x in 0..5 {
-    for y in 0..5 {
-      state[index!(x,y)] ^= d[x];
+  unroll! {
+    for x in 0..5 {
+      unroll! {
+        for y in 0..5 {
+          state[index!(x,y)] ^= d[x];
+        }
+      }
     }
   }
 }
@@ -43,33 +49,41 @@ fn theta(state: &mut [u64]) {
 #[inline]
 fn rho(state: &mut [u64]) {
   // ρ
-  for x in 0..5 {
-    for y in 0..5 {
-        state[index!(x,y)] = state[index!(x,y)].rotate_left(ROTATION_CONSTANTS[x][y]);
+  unroll! {
+    for x in 0..5 {
+      unroll! {
+        for y in 0..5 {
+            state[index!(x,y)] = state[index!(x,y)].rotate_left(ROTATION_CONSTANTS[x][y]);
+        }
+      }
     }
   }
 }
 
 #[inline]
-fn pi(mut state: &mut [u64]) {
+fn pi(state: &mut [u64]) {
   // π
   let mut temp_state = [0u64; 25];
 
   for x in 0..5 {
     for y in 0..5 {
-      temp_state[index!(x,y)] = state[index!(x,y)].clone();
+      temp_state[index!(x,y)] = state[index!(x,y)];
     }
   }
 
-  for x in 0..5 {
-    for y in 0..5 {
-      state[index!((0*x + 1*y),(2*x + 3*y))] = temp_state[index!(x,y)].clone();
+  unroll! {
+    for x in 0..5 {
+      unroll! {
+        for y in 0..5 {
+          state[index!((0*x + 1*y),(2*x + 3*y))] = temp_state[index!(x,y)];
+        }
+      }
     }
   }
 }
 
 #[inline]
-fn chi(mut state: &mut [u64]) {
+fn chi(state: &mut [u64]) {
   // χ
   let mut temp_state = [0u64; 25];
 
@@ -79,15 +93,20 @@ fn chi(mut state: &mut [u64]) {
     }
   }
 
-  for x in 0..5 {
-    for y in 0..5 {
-      state[index!(x,y)] = temp_state[index!(x,y)] ^ (!temp_state[index!(x+1,y)] & temp_state[index!(x+2,y)]);
+  unroll! {
+    for x in 0..5 {
+      unroll! {
+        for y in 0..5 {
+          state[index!(x,y)] = temp_state[index!(x,y)] ^ (!temp_state[index!(x+1,y)] & temp_state[index!(x+2,y)]);
+        }
+      }
     }
   }
+  
 }
 
 #[inline]
-fn iota(mut state: &mut [u64], rc: u64) {
+fn iota(state: &mut [u64], rc: u64) {
   //ι
   state[0] ^= rc;
 }

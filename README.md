@@ -25,8 +25,13 @@ In your code, use as follow:
       let state: Vec<u64> = keccak.get_internal_state();
     }
 
-This package is still under heavy development. Use at own risk.
+This package is under development. Use at own risk.
 
 The primary goal of this code base is to present a easy to read and understand implementation of Keccak.
 
 (This is not a particularly fast implementation of Keccak, but it utilises NO unsafe code)
+
+    test perf_k_256_empty_input ... bench:       2,603 ns/iter (+/- 463)
+    test perf_k_256_long_input  ... bench:       6,348 ns/iter (+/- 2,624)
+    test perf_k_512_empty_input ... bench:       2,560 ns/iter (+/- 442)
+    test perf_k_512_long_input  ... bench:       8,917 ns/iter (+/- 1,638)

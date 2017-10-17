@@ -19,7 +19,6 @@ impl Sponge {
     assert!(data.len() % self.rate_in_bytes == 0, "Data padding error!");
 
     let number_of_blocks: usize = data.len() / self.rate_in_bytes;
-    let overflow: usize = data.len() % 8;
 
     // // Cut u8 array into u64 chunks
     let lanes: Vec<u64> = Sponge::cut_into_lanes(data);

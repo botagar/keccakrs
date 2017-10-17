@@ -10,7 +10,7 @@ impl Padder {
     }
   }
 
-  pub fn pad(&self, mut message: &mut Vec<u8>) {
+  pub fn pad(&self, message: &mut Vec<u8>) {
     let no_of_padding_bytes = self.rate_in_bytes - (message.len() % self.rate_in_bytes);
     if no_of_padding_bytes == 1 {
       message.push(0x81 as u8);

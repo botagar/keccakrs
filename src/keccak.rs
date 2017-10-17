@@ -9,9 +9,6 @@ mod keccak_f;
 mod sponge;
 mod padder;
 
-use constants::*;
-use round::*;
-use keccak_f::*;
 use sponge::*;
 use padder::*;
 
