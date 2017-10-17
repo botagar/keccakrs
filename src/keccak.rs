@@ -1,5 +1,7 @@
 #![crate_type = "lib"]
 #![crate_name = "keccakrs"]
+// #![feature(use_extern_macros)]
+#[macro_use] extern crate crunchy;
 
 mod constants;
 mod round;

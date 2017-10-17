@@ -1,3 +1,5 @@
+
+
 use constants::*;
 
 macro_rules! index {
@@ -6,6 +8,7 @@ macro_rules! index {
   };
 }
 
+#[inline]
 pub fn round(mut state: &mut [u64], round_constant: u64) {
   
   theta(&mut state);
@@ -16,6 +19,7 @@ pub fn round(mut state: &mut [u64], round_constant: u64) {
 
 }
 
+#[inline]
 fn theta(state: &mut [u64]) {
   // θ
   let mut c = [0u64; 5];
@@ -36,6 +40,7 @@ fn theta(state: &mut [u64]) {
   }
 }
 
+#[inline]
 fn rho(state: &mut [u64]) {
   // ρ
   for x in 0..5 {
@@ -45,6 +50,7 @@ fn rho(state: &mut [u64]) {
   }
 }
 
+#[inline]
 fn pi(mut state: &mut [u64]) {
   // π
   let mut temp_state = [0u64; 25];
@@ -62,6 +68,7 @@ fn pi(mut state: &mut [u64]) {
   }
 }
 
+#[inline]
 fn chi(mut state: &mut [u64]) {
   // χ
   let mut temp_state = [0u64; 25];
@@ -79,6 +86,7 @@ fn chi(mut state: &mut [u64]) {
   }
 }
 
+#[inline]
 fn iota(mut state: &mut [u64], rc: u64) {
   //ι
   state[0] ^= rc;
