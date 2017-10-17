@@ -10,8 +10,14 @@ categories = ["cryptography"]
 license = "MPL-2.0"
 readme = "README.md"
 
+[dependencies]
+
 [lib]
 path = "src/keccak.rs"
+
+[[bench]]
+path = "tests/perf.rs"
+name = "perf"
 
 [profile.dev]
 opt-level = 0
