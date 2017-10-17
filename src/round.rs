@@ -6,24 +6,20 @@ macro_rules! index {
   };
 }
 
-pub fn round(mut state: &mut Vec<u64>, round_constant: u64) {
+pub fn round(mut state: &mut [u64], round_constant: u64) {
   
   theta(&mut state);
-  // println!("State θ: {:?}", state);
   rho(&mut state);
   pi(&mut state);
-  // println!("State ρπ: {:?}", state);
   chi(&mut state);
-  // println!("State χ: {:?}", state);
   iota(&mut state, round_constant);
-  // println!("State ι: {:?}", state);
 
 }
 
-fn theta(state: &mut Vec<u64>) {
+fn theta(state: &mut [u64]) {
   // θ
-  let mut c = vec![0u64; 5];
-  let mut d = vec![0u64; 5];
+  let mut c = [0u64; 5];
+  let mut d = [0u64; 5];
 
   for x in 0..5 {
     c[x] = state[index!(x,0)] ^ state[index!(x,1)] ^ state[index!(x,2)] ^ state[index!(x,3)] ^ state[index!(x,4)];
@@ -40,7 +36,7 @@ fn theta(state: &mut Vec<u64>) {
   }
 }
 
-fn rho(state: &mut Vec<u64>) {
+fn rho(state: &mut [u64]) {
   // ρ
   for x in 0..5 {
     for y in 0..5 {
@@ -49,9 +45,9 @@ fn rho(state: &mut Vec<u64>) {
   }
 }
 
-fn pi(mut state: &mut Vec<u64>) {
+fn pi(mut state: &mut [u64]) {
   // π
-  let mut temp_state = init_slice();
+  let mut temp_state = [0u64; 25];
 
   for x in 0..5 {
     for y in 0..5 {
@@ -66,9 +62,9 @@ fn pi(mut state: &mut Vec<u64>) {
   }
 }
 
-fn chi(mut state: &mut Vec<u64>) {
+fn chi(mut state: &mut [u64]) {
   // χ
-  let mut temp_state = init_slice();
+  let mut temp_state = [0u64; 25];
 
   for x in 0..5 {
     for y in 0..5 {
@@ -83,11 +79,7 @@ fn chi(mut state: &mut Vec<u64>) {
   }
 }
 
-fn iota(mut state: &mut Vec<u64>, rc: u64) {
+fn iota(mut state: &mut [u64], rc: u64) {
   //ι
   state[0] ^= rc;
-}
-
-fn init_slice() -> Vec<u64> {
-  vec![0u64; 25]
 }

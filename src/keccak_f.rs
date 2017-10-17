@@ -18,7 +18,7 @@ impl KeccakF {
     }
   }
 
-  pub fn process(&self, mut state: &mut Vec<u64>) {
+  pub fn process(&self, mut state: &mut [u64]) {
     for i in 0..self.n {
       round(&mut state, ROUND_CONSTANTS[i]);
     }

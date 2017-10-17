@@ -15,13 +15,13 @@ impl Sponge {
     }
   }
 
-  pub fn absorb(&self, mut state: &mut Vec<u64>, data: Vec<u8>) {
+  pub fn absorb(&self, mut state: &mut [u64], data: &[u8]) {
     assert!(data.len() % self.rate_in_bytes == 0, "Data padding error!");
 
     let number_of_blocks: usize = data.len() / self.rate_in_bytes;
     let overflow: usize = data.len() % 8;
 
-    // Cut u8 array into u64 chunks
+    // // Cut u8 array into u64 chunks
     let lanes: Vec<u64> = Sponge::cut_into_lanes(data);
 
     for block_index in 0..number_of_blocks {
@@ -33,7 +33,7 @@ impl Sponge {
     }
   }
 
-  pub fn squeeze(&self, state: &mut Vec<u64>) -> Vec<u8> {
+  pub fn squeeze(&self, state: &mut [u64]) -> Vec<u8> {
     let no_of_output_bytes: usize = (self.capacity / 2) / 8;
     let mut output_bytes: Vec<u8> = vec![];
     let no_of_lanes: usize = no_of_output_bytes / 8;
@@ -67,7 +67,7 @@ impl Sponge {
     bytes
   }
 
-  fn cut_into_lanes(data: Vec<u8>) -> Vec<u64> {
+  fn cut_into_lanes(data: &[u8]) -> Vec<u64> {
     let mut lanes: Vec<u64> = vec![];
     let mut lane: u64 = 0;
     let mut next_8_chars: Vec<u8>;

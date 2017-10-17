@@ -19,7 +19,7 @@ pub fn new_keccak1600_384() -> Keccak { Keccak::new(832, 768) }
 pub fn new_keccak1600_512() -> Keccak { Keccak::new(576, 1024) }
 
 pub struct Keccak {
-  state: Vec<u64>,
+  state: [u64; 25],
   data_queue: Vec<u8>,
   sponge: Sponge,
   input_padder: Padder
@@ -29,7 +29,7 @@ impl Keccak {
 
   pub fn new(rate: usize, capacity: usize) -> Keccak {
     Keccak {
-      state: Keccak::init_state(),
+      state: [0; 25],
       sponge: Sponge::new(rate, capacity),
       input_padder: Padder::new(rate),
       data_queue: vec![]
@@ -43,15 +43,11 @@ impl Keccak {
   }
 
   pub fn hash(&mut self) -> Vec<u8> {
-    self.sponge.absorb(&mut self.state, self.data_queue.clone());
+    self.sponge.absorb(&mut self.state, &self.data_queue);
     self.sponge.squeeze(&mut self.state)
   }
 
-  pub fn get_internal_state(&mut self) -> Vec<u64> {
-    self.state.clone()
-  }
-
-  fn init_state() -> Vec<u64> {
-    vec![0u64; 25]
+  pub fn get_internal_state(&mut self) -> &[u64] {
+    &self.state
   }
 }
