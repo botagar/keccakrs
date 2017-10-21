@@ -54,7 +54,7 @@ impl Keccak {
   }
 
   pub fn injest(&mut self, input: &mut String) {
-    let mut input_as_bytes: &[u8] = input.as_bytes();
+    let input_as_bytes: &[u8] = input.as_bytes();
     let padding_bytes: Vec<u8> = Keccak::generate_padding_bytes(input_as_bytes, self.injestion_rate_in_bytes);
     let data_to_injest: &[u8] = &[input_as_bytes, &padding_bytes].concat();
     self.sponge.absorb(&mut self.state, data_to_injest);
@@ -154,20 +154,36 @@ impl Sponge {
   }
 
   fn cut_into_lanes(data: &[u8]) -> Vec<u64> {
-    let mut lanes: Vec<u64> = vec![];
     let mut lane: u64 = 0;
     let mut next_8_chars: Vec<u8>;
     let no_of_lanes = data.len() / 8;
+    let mut lanes: Vec<u64> = vec![0; no_of_lanes];
 
     for i in 0..(no_of_lanes) {
       next_8_chars = data[(i*8)..((i*8)+8)].to_vec();
-      for j in (0..8).rev() {
-        lane <<= 8;
-        lane |= next_8_chars[j] as u64;
-      }
-      lanes.push(lane);
+      lane = (next_8_chars[0] as u64)
+      | ((next_8_chars[1] as u64) << 8) 
+      | ((next_8_chars[2] as u64) << 16) 
+      | ((next_8_chars[3] as u64) << 24) 
+      | ((next_8_chars[4] as u64) << 32) 
+      | ((next_8_chars[5] as u64) << 40) 
+      | ((next_8_chars[6] as u64) << 48) 
+      | ((next_8_chars[7] as u64) << 56);
+
+      lanes[i] = lane;
     }
+
     lanes
+
+    // for i in 0..(no_of_lanes) {
+    //   next_8_chars = data[(i*8)..((i*8)+8)].to_vec();
+    //   for j in (0..8).rev() {
+    //     lane <<= 8;
+    //     lane |= next_8_chars[j] as u64;
+    //   }
+    //   lanes.push(lane);
+    // }
+    // lanes
   }
 }
 
@@ -186,6 +202,7 @@ impl KeccakF {
 
   pub fn process(&self, mut state: &mut [u64]) {
     assert!(self.n == 24, "n val has changed");
+    
     unroll! {
       for i in 0..24 {
         round(&mut state, ROUND_CONSTANTS[i]);
@@ -196,7 +213,7 @@ impl KeccakF {
 
 #[inline]
 pub fn round(mut state: &mut [u64], round_constant: u64) {
-  
+
   theta(&mut state);
   rho(&mut state);
   pi(&mut state);
@@ -208,8 +225,8 @@ pub fn round(mut state: &mut [u64], round_constant: u64) {
 #[inline]
 fn theta(state: &mut [u64]) {
   // θ
-  let mut c = [0u64; 5];
-  let mut d = [0u64; 5];
+  let mut c: [u64; 5] = [0u64; 5];
+  let mut d: [u64; 5] = [0u64; 5];
 
   unroll! {
     for x in 0..5 {
