@@ -14,7 +14,7 @@ readme = "README.md"
 crunchy = "0.1.6"
 
 [lib]
-path = "src/keccak.rs"
+path = "src/lib.rs"
 
 [[bench]]
 path = "tests/perf.rs"
