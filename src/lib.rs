@@ -154,36 +154,20 @@ impl Sponge {
   }
 
   fn cut_into_lanes(data: &[u8]) -> Vec<u64> {
-    let mut lane: u64 = 0;
-    let mut next_8_chars: Vec<u8>;
     let no_of_lanes = data.len() / 8;
     let mut lanes: Vec<u64> = vec![0; no_of_lanes];
 
     for i in 0..(no_of_lanes) {
-      next_8_chars = data[(i*8)..((i*8)+8)].to_vec();
-      lane = (next_8_chars[0] as u64)
-      | ((next_8_chars[1] as u64) << 8) 
-      | ((next_8_chars[2] as u64) << 16) 
-      | ((next_8_chars[3] as u64) << 24) 
-      | ((next_8_chars[4] as u64) << 32) 
-      | ((next_8_chars[5] as u64) << 40) 
-      | ((next_8_chars[6] as u64) << 48) 
-      | ((next_8_chars[7] as u64) << 56);
-
-      lanes[i] = lane;
+      lanes[i] = (data[(i*8)] as u64)
+      | ((data[(i*8)+1] as u64) << 8) 
+      | ((data[(i*8)+2] as u64) << 16) 
+      | ((data[(i*8)+3] as u64) << 24) 
+      | ((data[(i*8)+4] as u64) << 32) 
+      | ((data[(i*8)+5] as u64) << 40) 
+      | ((data[(i*8)+6] as u64) << 48) 
+      | ((data[(i*8)+7] as u64) << 56);
     }
-
     lanes
-
-    // for i in 0..(no_of_lanes) {
-    //   next_8_chars = data[(i*8)..((i*8)+8)].to_vec();
-    //   for j in (0..8).rev() {
-    //     lane <<= 8;
-    //     lane |= next_8_chars[j] as u64;
-    //   }
-    //   lanes.push(lane);
-    // }
-    // lanes
   }
 }
 
