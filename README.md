@@ -31,7 +31,7 @@ The primary goal of this code base is to present a easy to read and understand i
 
 (This is not a particularly fast implementation of Keccak, but it utilises NO unsafe code)
 
-    test perf_k_256_empty_input ... bench:       2,603 ns/iter (+/- 463)
-    test perf_k_256_long_input  ... bench:       6,348 ns/iter (+/- 2,624)
-    test perf_k_512_empty_input ... bench:       2,560 ns/iter (+/- 442)
-    test perf_k_512_long_input  ... bench:       8,917 ns/iter (+/- 1,638)
+    test perf_k_256_empty_input ... bench:       1,244 ns/iter (+/- 99)
+    test perf_k_256_long_input  ... bench:       3,400 ns/iter (+/- 196)
+    test perf_k_512_empty_input ... bench:       1,400 ns/iter (+/- 109)
+    test perf_k_512_long_input  ... bench:       5,713 ns/iter (+/- 731)
